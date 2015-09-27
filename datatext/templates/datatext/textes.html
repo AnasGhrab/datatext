@@ -1,0 +1,16 @@
+<!-- {% load staticfiles %}
+
+<link href="{% static "css/style1.css" %}" rel="stylesheet" type="text/css" />
+-->
+
+
+<div style="direction: rtl;">
+
+<div>
+    <ul>
+    {% for t in textes %}
+            <li>{{ t.id_auteur.prenom_ar }} {{ t.id_auteur }} : <a href="../{{ t.id }}/texte/">{{ t.titre_ar }}</a></li>
+    {% endfor %}
+</div>
+
+</div>

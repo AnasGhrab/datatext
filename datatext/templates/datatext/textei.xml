@@ -1,0 +1,100 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                {% for f in texte %}
+                <title type="full">
+                    <title type="main">{{ f.titre_ar }}</title>
+                    <title type="sub">{{ f.titre_trans }}</title>
+                </title>
+                <author>
+                        <persName>
+                            <surname>{{ f.id_auteur }}</surname>
+                            <addName></addName>
+                        </persName>
+                    <date>...
+                        <placeName>
+                            <settlement type="city">...</settlement>
+                            <country>...</country>
+                        </placeName>
+                    </date>
+                    <date>...
+                        <placeName>
+                            <settlement type="city">...</settlement>
+                            <country>...</country>
+                        </placeName>
+                    </date>
+                </author>	
+                <respStmt>
+                    <resp>تحقيق</resp>
+                    <persName>أنس غراب</persName>
+                </respStmt>
+                {% endfor %}                
+            </titleStmt>
+      <publicationStmt>
+        <p></p>
+      </publicationStmt>
+            <notesStmt>
+                <note>
+                    أكثر معلومات حول المؤلّف
+                </note>
+                
+            </notesStmt>
+        <sourceDesc>
+            <listWit>
+            {% for f in copies %}
+                <witness xml:id="MS{{ f.id }}">
+                    <msDesc>
+                        <msIdentifier>
+                            <country>{{ f.id_corpus.id_biblio.pays }} - {{ f.id_corpus.id_biblio.ville }}</country>
+                            <repository>{{ f.id_corpus.id_biblio.nom }}</repository>
+                            <idno>{{ f.id_corpus.prefix }} - {{ f.numincorpus }}/{{ f.id_corpus.cote }}</idno>
+                        </msIdentifier>
+                    </msDesc>
+                    <bibl>
+                    <soCalled>{{ f.titre }}</soCalled>
+                        <author>{{ f.auteur }}</author>
+                        {{ f.folio_begin }}-{{ f.folio_end }}
+                    </bibl>
+                </witness>
+            {% endfor %}
+            </listWit>
+        </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+        <variantEncoding method="parallel-segmentation" location="internal"/>
+    </encodingDesc>
+    <profileDesc>
+        <langUsage>
+            <language ident="ar-TN" usage="100"></language>
+        </langUsage>
+    </profileDesc>
+        
+    </teiHeader>
+
+
+    <text>
+        <front>
+            <div type="abstract">
+                <head>وصف محتوى الكتاب</head>
+            </div>
+            <div type="contents">
+                <head>فهرس الكتاب</head>
+            </div>
+        </front>
+        
+        
+        <body>    
+        {% for s in sections %}
+        <div>
+        <head>{{ s.titre }}</head>
+        {{ s.texte|safe }}
+        </div>
+        {% endfor %}
+        
+        <div>
+             <head>مراجع بيبليوغرافيّة</head>
+         </div>
+        </body>
+    </text>
+</TEI>

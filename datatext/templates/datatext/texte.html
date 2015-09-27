@@ -1,0 +1,47 @@
+<div style="direction: rtl;">
+
+    <div>
+    {% for f in texte %}
+            <p>{{ f.id }} : ({{ f.catalogue }} {{ f.ref }} - {{ f.catalogue2 }} {{ f.ref2 }})</li>
+            <h1>{{ f.titre_ar }}</h1>
+            <p><b>{{ f.id_auteur }}</b></p>
+            <p>{{ f.commentaires|safe }}</p>
+    {% endfor %}
+    </div>
+
+    <div>
+    {% for f in copies %}
+    <hr/>
+        <div>
+        {{ f.id_corpus.id_biblio.nom }} : {{ f.id_corpus.prefix }} - {{ f.numincorpus }}/{{ f.id_corpus.cote }} 
+        ({{ f.numincorpus }}{{ f.folio_begin }}-{{ f.folio_end }})
+        <p>
+        {{ f.auteur }}: {{ f.titre }} 
+        </p>
+        <p>
+        {{ f.copiste }} : {{ f.date_hej }}/{{ f.date }} - {{ f.lieu }}         
+        </p>
+        <p>
+        {{ f.commentaires|safe }}
+        </p>
+        <p>
+        {{ f.incipit }}
+        </p>
+        <p>
+        {{ f.explicit }}
+        </p>
+        </div>
+    {% endfor %}
+    <div>
+    <hr/>
+    <div>
+    {% for s in sections %}
+        <p>
+        <h2>{{ s.titre }}</h2>
+        </p>
+        <div>
+        {{ s.texte|safe }}
+        </div>
+    {% endfor %}    
+    </div>
+</div>

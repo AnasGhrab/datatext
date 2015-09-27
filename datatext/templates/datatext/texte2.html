@@ -1,0 +1,17 @@
+<div style="direction: rtl;">
+
+    <div>
+        <h1>{{ titre }}</h1>
+        <h2>
+        {% for a in auteur %}
+            {{ a.text }}</p>
+        {% endfor %}
+        </h2>
+    </div>
+    <div>
+    {% for s in body %}
+            <p>{{ s.text }}</p>
+    {% endfor %}
+    </div>
+
+</div>
